@@ -1,13 +1,31 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import s from './App.module.css';
 
 function App() {
     const [value, setValue] = useState<number>(0)
+    const [startValue, setStartValue] = useState<number>(0)
+    const [maxValue, setMaxValue] = useState<number>(0)
+
     const onClickIncrement = () => {
-        setValue(value + 1)
+        if (value < maxValue) {
+            setValue(value + 1)
+        }
     }
+
     const onClickReset = () => {
-        setValue(0)
+        setValue(startValue)
+    }
+
+    const onChangeSetMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
+        setMaxValue(Number(e.currentTarget.value))
+    }
+
+    const onChangeSetStartValue = (e: ChangeEvent<HTMLInputElement>) => {
+        setStartValue(Number(e.currentTarget.value))
+    }
+
+    const onClickSetStartValue = () => {
+        setValue(startValue)
     }
 
     return (
@@ -16,15 +34,15 @@ function App() {
                 <div className={s.valuesWrapper}>
                     <label htmlFor="">
                         max value:
-                        <input type="text"/>
+                        <input type="number" value={maxValue} onChange={onChangeSetMaxValue}/>
                     </label>
                     <label htmlFor="">
                         start value:
-                        <input type="text"/>
+                        <input type="number" value={startValue} onChange={onChangeSetStartValue}/>
                     </label>
                 </div>
                 <div>
-                    <button>set</button>
+                    <button onClick={onClickSetStartValue}>set</button>
                 </div>
             </div>
             <div className={s.counter}>
