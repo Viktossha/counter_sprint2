@@ -1,3 +1,8 @@
+.wrapper {
+    display: flex;
+    gap: 50px;
+}
+
 .counter {
 
 }
@@ -8,4 +13,13 @@
 
 .btnWrapper {
 
+}
+
+.settings {
+
+}
+
+.valuesWrapper {
+    display: flex;
+    flex-direction: column;
 }
